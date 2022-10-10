@@ -1,7 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -21,6 +29,8 @@ class MyApp extends StatelessWidget {
 }
 
 class App extends StatelessWidget {
+  final mailController = TextEditingController();
+  final passController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +40,7 @@ class App extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/app_title.png'),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Padding(
@@ -49,24 +59,26 @@ class App extends StatelessWidget {
                       child: Column(
                         children: [
                           Row(
-                            children: [
+                            children: const [
                               Text('ログインメールアドレス'),
                             ],
                           ),
-                          TextField(
+                          TextFormField(
+                            controller: mailController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Row(
-                            children: [
+                            children: const [
                               Text('パスワード'),
                             ],
                           ),
-                          TextField(
+                          TextFormField(
+                            controller: passController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               suffixIcon: Icon(
@@ -74,27 +86,33 @@ class App extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
-                          Container(
+                          SizedBox(
                             height: 60,
                             width: MediaQuery.of(context).size.width,
                             child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  final auth = FirebaseAuth.instance;
+                                  await auth.createUserWithEmailAndPassword(
+                                    email: mailController.text,
+                                    password: passController.text,
+                                  );
+                                },
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
-                                      Color(0xffFF9800)),
+                                      const Color(0xffFF9800)),
                                 ),
-                                child: Text('ログイン')),
+                                child: const Text('ログイン')),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           RichText(
                             text: TextSpan(
-                              style: TextStyle(
-                                color: Color(0xffFF9800),
+                              style: const TextStyle(
+                                color: const Color(0xffFF9800),
                               ),
                               children: [
                                 TextSpan(
