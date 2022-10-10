@@ -28,9 +28,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  App({Key? key}) : super(key: key);
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   final mailController = TextEditingController();
   final passController = TextEditingController();
+
+  bool isDisplay = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,11 +88,24 @@ class App extends StatelessWidget {
                             ],
                           ),
                           TextFormField(
+                            obscureText: isDisplay,
                             controller: passController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              suffixIcon: Icon(
-                                Icons.remove_red_eye,
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  // 対象 ? true : false
+                                  isDisplay
+                                      ? Icons.remove_red_eye
+                                      : Icons.elderly,
+                                ),
+                                onPressed: () {
+                                  // アイコンを押した時にアイコンの表示を変更
+
+                                  setState(() {
+                                    isDisplay = !isDisplay;
+                                  });
+                                },
                               ),
                             ),
                           ),
