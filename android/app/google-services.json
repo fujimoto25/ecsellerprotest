@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "264981618993",
+    "project_id": "ecsellerprotest",
+    "storage_bucket": "ecsellerprotest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264981618993:android:23efd7af59f9629c0d5010",
+        "android_client_info": {
+          "package_name": "com.example.ecsellerprotest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264981618993-9hjhiu4llgr3h5ita9knmo8opjpdfo6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyikMVzMT8YnMSGylLzkolFW4ibR4MGNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264981618993-9hjhiu4llgr3h5ita9knmo8opjpdfo6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
